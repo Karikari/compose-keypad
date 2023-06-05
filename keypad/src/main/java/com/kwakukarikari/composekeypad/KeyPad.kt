@@ -20,6 +20,7 @@ import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -36,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nimdi.composekeypad.R
 import com.nimdi.keypad.ui.theme.AppTheme
+import kotlinx.coroutines.delay
 
 
 /**
@@ -53,13 +55,25 @@ fun KeyPad(
     activeIndicatorColor: Color = Color.Gray,
     onKeyPressed: (String) -> Unit = {},
     errorMessage: String = "",
-    isError: MutableState<Boolean> = mutableStateOf(false)
+    isError: MutableState<Boolean> = mutableStateOf(false),
+    clear: MutableState<Boolean> = mutableStateOf(false)
 ) {
     val stack = remember {
         mutableStateListOf<String>()
     }
 
     onKeyPressed(stack.join())
+
+    /**
+     * This Clears the stack when clear is set to true
+     */
+    LaunchedEffect(clear.value){
+        if (clear.value){
+            delay(500)
+            stack.clear()
+            clear.value = false
+        }
+    }
 
     Column(
         modifier = modifier,
@@ -115,7 +129,16 @@ fun KeyPad(
                             )
                         }
                         "#" -> {
-                            // Nothing is Here...
+                            KeyIcon(
+                                number = "clear",
+                                iconColor = keyBackgroundColor,
+                                onKeyPress = {
+                                    if (stack.isNotEmpty()) {
+                                        stack.clear()
+                                    }
+                                },
+                                icon = ImageVector.vectorResource(id = R.drawable.ic_clear)
+                            )
                         }
                         else -> {
                             Key(
@@ -182,7 +205,7 @@ fun Key(
     number: String,
     onKeyPress: (String) -> Unit = {},
     textColor: Color = Color.Black,
-    backgroundColor: Color = Color.Gray
+    backgroundColor: Color = Color.Gray,
 ) {
     Box(
         modifier = modifier
@@ -209,7 +232,7 @@ fun Key(
         Text(
             text = number,
             fontSize = 30.sp,
-            color = textColor
+            color = textColor,
         )
     }
 }
@@ -219,7 +242,8 @@ fun KeyIcon(
     modifier: Modifier = Modifier,
     number: String,
     onKeyPress: (String) -> Unit = {},
-    iconColor: Color = Color.Black
+    iconColor: Color = Color.Black,
+    icon: ImageVector  = ImageVector.vectorResource(id = R.drawable.backspace)
 ) {
     Box(
         modifier = modifier
@@ -228,7 +252,7 @@ fun KeyIcon(
         contentAlignment = Alignment.Center
     ) {
         Icon(
-            imageVector = ImageVector.vectorResource(id = R.drawable.backspace),
+            imageVector = icon,
             modifier = Modifier
                 .size(40.dp)
                 .clickable(role = Role.Button, onClick = {
