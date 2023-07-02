@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
  */
 @Keep
 data class Country(
-    val name: String = "",
+    val name: String = "Ghana",
     @SerializedName("dial_code")
     val dialCode: String = "",
     val code: String = ""
