@@ -53,7 +53,9 @@ fun CountryPicker(
     showCountryCode: Boolean = true,
     showDialCode: Boolean = true,
     masterCountries: List<String> = emptyList(),
-    onCountrySelected: (Country) -> Unit = {}
+    onCountrySelected: (Country) -> Unit = {},
+    textColor: Color = Color.Black,
+    backgroundColor: Color = Color.White
 ) {
     val localContext = LocalContext.current
 
@@ -88,7 +90,7 @@ fun CountryPicker(
         countries = onlyCountries
     }
 
-    val flagName = "flag ".plus(selectedCountry?.name)
+    val flagName = "flag ".plus(selectedCountry?.name ?: "Ghana")
 
     val flag = flagName.split(" ").joinToString("_").lowercase()
 
@@ -112,12 +114,22 @@ fun CountryPicker(
             HorizontalSpacer(space = 5.dp)
         }
         if (showCountryCode) {
-            Text(text = selectedCountry!!.code)
+            selectedCountry?.let {
+                Text(
+                    text = it.code,
+                    color = textColor
+                )
+            }
+
             HorizontalSpacer(space = 5.dp)
         }
-
         if (showDialCode) {
-            Text(text = selectedCountry!!.dialCode)
+            selectedCountry?.let {
+                Text(
+                    text = it.dialCode,
+                    color = textColor
+                )
+            }
         }
     }
     CountryPickerDialog(
@@ -126,7 +138,9 @@ fun CountryPicker(
             selectedCountry = it
             onCountrySelected(it)
         },
-        dialogState = dialogState
+        dialogState = dialogState,
+        textColor = textColor,
+        backgroundColor = backgroundColor
     )
 }
 
@@ -134,7 +148,9 @@ fun CountryPicker(
 private fun CountryPickerDialog(
     countries: List<Country> = emptyList(),
     onCountrySelected: (Country) -> Unit = {},
-    dialogState: MutableState<Boolean> = mutableStateOf(false)
+    dialogState: MutableState<Boolean> = mutableStateOf(false),
+    textColor: Color,
+    backgroundColor: Color
 ) {
     val query = remember { mutableStateOf("") }
     val searchedCountries = remember { mutableStateOf(emptyList<Country>()) }
@@ -183,7 +199,9 @@ private fun CountryPickerDialog(
                                     onCountrySelected(country)
                                     dialogState.value = false
                                 },
-                            country = country
+                            country = country,
+                            textColor = textColor,
+                            backgroundColor = backgroundColor
                         )
                         HorizontalSpacer(space = 2.dp)
                     }
@@ -196,13 +214,15 @@ private fun CountryPickerDialog(
 @Composable
 private fun CountryRow(
     modifier: Modifier = Modifier,
-    country: Country
+    country: Country,
+    textColor: Color,
+    backgroundColor: Color
 ) {
     val context = LocalContext.current
 
     Row(
         modifier = modifier
-            .background(color = Color.White)
+            .background(color = backgroundColor)
             .padding(start = 15.dp, end = 15.dp, bottom = 8.dp, top = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -223,13 +243,15 @@ private fun CountryRow(
             text = country.name.plus(" (${country.code})"),
             fontSize = 15.sp,
             overflow = TextOverflow.Ellipsis,
-            maxLines = 1
+            maxLines = 1,
+            color = textColor
         )
         FillAvailableSpace()
         Text(
             text = country.dialCode,
             fontSize = 15.sp,
-            maxLines = 1
+            maxLines = 1,
+            color = textColor
         )
     }
 
@@ -248,7 +270,11 @@ private fun CountryPickerPreview() {
 @Composable
 private fun CountryRowPreview() {
     AppTheme {
-        CountryRow(country = Country("Ghana", "+233", "GH"))
+        CountryRow(
+            country = Country("Ghana", "+233", "GH"),
+            textColor = Color.Red,
+            backgroundColor = Color.Yellow
+        )
     }
 }
 
