@@ -101,12 +101,14 @@ fun CountryPicker(
         verticalAlignment = Alignment.CenterVertically
     ) {
         if (showFlag) {
-            Image(
-                painter = painterResource(id = getDrawableId(localContext, flag)!!),
-                contentDescription = "Country",
-                modifier = Modifier
-                    .size(25.dp)
-            )
+            getDrawableId(localContext, flag)?.let {
+                Image(
+                    painter = painterResource(id = it),
+                    contentDescription = "Country",
+                    modifier = Modifier
+                        .size(25.dp)
+                )
+            }
             HorizontalSpacer(space = 5.dp)
         }
         if (showCountryCode) {
@@ -129,7 +131,7 @@ fun CountryPicker(
 }
 
 @Composable
-fun CountryPickerDialog(
+private fun CountryPickerDialog(
     countries: List<Country> = emptyList(),
     onCountrySelected: (Country) -> Unit = {},
     dialogState: MutableState<Boolean> = mutableStateOf(false)
@@ -192,7 +194,7 @@ fun CountryPickerDialog(
 }
 
 @Composable
-fun CountryRow(
+private fun CountryRow(
     modifier: Modifier = Modifier,
     country: Country
 ) {
@@ -236,7 +238,7 @@ fun CountryRow(
 
 @Preview(showBackground = true)
 @Composable
-fun CountryPickerPreview() {
+private fun CountryPickerPreview() {
     AppTheme {
         CountryPicker()
     }
@@ -244,21 +246,21 @@ fun CountryPickerPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun CountryRowPreview() {
+private fun CountryRowPreview() {
     AppTheme {
         CountryRow(country = Country("Ghana", "+233", "GH"))
     }
 }
 
-fun getDrawableId(context: Context?, name: String): Int? {
+private fun getDrawableId(context: Context?, name: String): Int? {
     return context?.resources?.getIdentifier(name, "drawable", context.packageName)
 }
 
-fun getCountries(context: Context?): List<Country> {
+private fun getCountries(context: Context?): List<Country> {
     return Gson().fromJson(loadJsonFromAsset(context), object : TypeToken<List<Country>>() {}.type)
 }
 
-fun loadJsonFromAsset(context: Context?, filename: String = "country_codes.json"): String {
+private fun loadJsonFromAsset(context: Context?, filename: String = "country_codes.json"): String {
    return try {
         val inputStream = context!!.assets.open(filename)
         val size = inputStream.available()
