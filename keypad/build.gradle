@@ -68,7 +68,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.github.karikari'
             artifactId = 'compose-keypad-otp-countrypicker'
-            version = '0.0.1'
+            version = '0.0.4'
 
             afterEvaluate {
                 from components.release
