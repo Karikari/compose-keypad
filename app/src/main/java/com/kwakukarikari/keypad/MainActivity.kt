@@ -19,9 +19,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.kwakukarikari.composekeypad.countrypicker.CountryPicker
-import com.kwakukarikari.composekeypad.keypad.KeyPad
-import com.kwakukarikari.composekeypad.otp.Otp
+import com.kwakukarikari.keypad.countrypicker.CountryPicker
+import com.kwakukarikari.keypad.keypad.KeyPad
+import com.kwakukarikari.keypad.otp.Otp
 import com.kwakukarikari.keypad.MainActivity.Constants.Grey_Light
 import com.kwakukarikari.keypad.MainActivity.Constants.PIN
 import com.kwakukarikari.keypad.ui.theme.MyAppTheme

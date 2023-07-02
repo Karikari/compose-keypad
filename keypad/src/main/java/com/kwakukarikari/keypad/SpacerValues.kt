@@ -1,4 +1,4 @@
-package com.kwakukarikari.composekeypad
+package com.kwakukarikari.keypad
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable

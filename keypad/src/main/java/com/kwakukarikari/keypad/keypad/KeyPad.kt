@@ -1,4 +1,4 @@
-package com.kwakukarikari.composekeypad.keypad
+package com.kwakukarikari.keypad.keypad
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -35,10 +35,10 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.kwakukarikari.composekeypad.join
-import com.kwakukarikari.composekeypad.pop
-import com.kwakukarikari.composekeypad.push
-import com.nimdi.composekeypad.R
+import com.kwakukarikari.keypad.R
+import com.kwakukarikari.keypad.join
+import com.kwakukarikari.keypad.pop
+import com.kwakukarikari.keypad.push
 import com.nimdi.keypad.ui.theme.AppTheme
 import kotlinx.coroutines.delay
 

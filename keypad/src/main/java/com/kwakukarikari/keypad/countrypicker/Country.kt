@@ -1,4 +1,4 @@
-package com.kwakukarikari.composekeypad.countrypicker
+package com.kwakukarikari.keypad.countrypicker
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName

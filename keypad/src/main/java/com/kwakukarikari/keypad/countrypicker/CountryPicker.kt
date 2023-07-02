@@ -1,4 +1,4 @@
-package com.kwakukarikari.composekeypad.countrypicker
+package com.kwakukarikari.keypad.countrypicker
 
 import android.content.Context
 import androidx.compose.foundation.Image
@@ -34,9 +34,9 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.kwakukarikari.composekeypad.FillAvailableSpace
-import com.kwakukarikari.composekeypad.HorizontalSpacer
-import com.nimdi.composekeypad.R
+import com.kwakukarikari.keypad.FillAvailableSpace
+import com.kwakukarikari.keypad.HorizontalSpacer
+import com.kwakukarikari.keypad.R
 import com.nimdi.keypad.ui.theme.AppTheme
 import java.io.IOException
 import java.nio.charset.StandardCharsets

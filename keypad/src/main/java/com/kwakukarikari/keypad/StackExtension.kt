@@ -1,4 +1,4 @@
-package com.kwakukarikari.composekeypad
+package com.kwakukarikari.keypad
 
 import java.lang.StringBuilder
 

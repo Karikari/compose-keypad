@@ -1,4 +1,4 @@
-package com.kwakukarikari.composekeypad.otp
+package com.kwakukarikari.keypad.otp
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
