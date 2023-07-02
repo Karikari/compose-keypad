@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.nimdi.keypad'
+    namespace 'com.kwakukarikari.keypad'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.nimdi.keypad"
+        applicationId "com.kwakukarikari.keypad"
         minSdk 21
         targetSdk 33
         versionCode 1
