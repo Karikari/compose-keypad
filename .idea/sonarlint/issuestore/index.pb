@@ -9,8 +9,6 @@ l
 settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
 ;
 gradlew.bat,2/a/2a45a911a8f1836b0b6c5b758962572012d8f8c3
-A
-gradle.properties,2/a/2afbb999f001938c88fa43fc2ef52abf0f8213e4
 k
 ;keypad/src/main/java/com/kwakukarikari/composekeypad/Otp.kt,8/2/82cf9cfdb0e6aa8f83dd524773efb5f60c6da8e1
 >
