@@ -1,7 +1,6 @@
 package com.kwakukarikari.keypad
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -20,8 +19,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.kwakukarikari.composekeypad.KeyPad
-import com.kwakukarikari.composekeypad.Otp
+import com.kwakukarikari.composekeypad.countrypicker.CountryPicker
+import com.kwakukarikari.composekeypad.keypad.KeyPad
+import com.kwakukarikari.composekeypad.otp.Otp
 import com.kwakukarikari.keypad.MainActivity.Constants.Grey_Light
 import com.kwakukarikari.keypad.MainActivity.Constants.PIN
 import com.kwakukarikari.keypad.ui.theme.MyAppTheme
@@ -38,18 +38,18 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             Surface(
                 modifier = Modifier.fillMaxSize(),
                 color = MaterialTheme.colorScheme.background
             ) {
-
                 val hasError = remember {
                     mutableStateOf(false)
                 }
 
-                Column(
-                ) {
+                Column {
+
                     KeyPad(
                         modifier = Modifier.background(color = Color.Transparent),
                         onKeyPressed = { value ->
@@ -67,12 +67,14 @@ class MainActivity : ComponentActivity() {
                         boxSize = 60.dp,
                         fontSize = 25.sp,
                         onCompleted = {
-                            if (it != PIN){
+                            if (it != PIN) {
                                 hasError.value = true
                             }
                         },
                         isError = hasError
                     )
+
+                    CountryPicker()
                 }
             }
         }

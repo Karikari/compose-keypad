@@ -1,18 +1,12 @@
 package com.nimdi.composekeypad
 
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.hasTextExactly
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import com.google.common.truth.Truth.assertThat
-import com.kwakukarikari.composekeypad.KeyPad
-import com.kwakukarikari.composekeypad.Otp
+import com.kwakukarikari.composekeypad.otp.Otp
 import com.nimdi.keypad.ui.theme.AppTheme
 import org.junit.Rule
 import org.junit.Test

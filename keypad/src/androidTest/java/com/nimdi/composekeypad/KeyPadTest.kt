@@ -9,7 +9,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.google.common.truth.Truth.assertThat
-import com.kwakukarikari.composekeypad.KeyPad
+import com.kwakukarikari.composekeypad.keypad.KeyPad
 import com.nimdi.keypad.ui.theme.AppTheme
 import org.junit.Rule
 import org.junit.Test
